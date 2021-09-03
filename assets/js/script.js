@@ -3,8 +3,9 @@ var apiID = 'a65ff64e';
 
 var apiKey = 'be6264a5a45b927edcca5d188d013025'
 
+
 function recipeFetch(){
-    fetch('https://api.edamam.com/api/recipes/v2?type=public&q=broccoli&cuisineType=italian&app_id=' + apiID + '&app_key=' + apiKey + '&health=vegan')
+    fetch('https://api.edamam.com/api/recipes/v2?type=public&q=chicken&cuisineType=italian&app_id=' + apiID + '&app_key=' + apiKey + '&health=vegan')
     .then(function(response){
         if(response.ok){
             console.log(response);
@@ -24,3 +25,4 @@ function youtubeFetch(){
 
 
 recipeFetch();
+
