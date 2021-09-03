@@ -29,20 +29,35 @@
           <input class="search" type="text" placeholder="Whatcha Tryna Cook?" id="nameField" aria-label="searchbar">
           <label for="cuisineField">Cuisine</label>
           <select id="cuisineField">
-            <option value="#">0-13</option>
-            <option value="#">14-17</option>
-            <option value="#">18-23</option>
-            <option value="#">24+</option>
+            <option class="cuisine" value="#">Make Your Selection</option>
+            <option class="cuisine" value="#">One Pot/Pan Meals</option>
+            <option class="cuisine" value="#">Mediterranean</option>
+            <option class="cuisine" value="#">Asian</option>
+            <option class="cuisine" value="#">Mexican/Latin America</option>
+            <option class="cuisine" value="#">American</option>
           </select>                
          
          <!----check boxes----->
-          <div>
+          <div class="checkbox">
             <input type="checkbox" id="confirmField">
-            <label class="label-inline" for="confirmField">Send a copy to yourself</label>
+            <label class="label-inline" for="confirmField">Gluten Free</label>
+
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Vegitarian</label>
+
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Vegan</label>
+
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Keto</label>
+
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Lactose Intolerant</label>
           </div>
 
           <!----button------>
-          <input class="btn1" type="submit" value="Search" aria-label="button">
+          <input class="button1" type="submit" value="Search" aria-label="search button">
+          <input class="button2" type="reset" value="Reset form" aria-label="reset button">
         </fieldset>
       </form>
 

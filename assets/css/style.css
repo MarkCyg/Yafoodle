@@ -4,6 +4,13 @@
     box-sizing: border-box;
   }
   
+/*BODY*/
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
+/*HEADER*/  
 header {
     font-weight: bold;
     text-align: center;
@@ -14,10 +21,11 @@ header h6 {
     font-style: italic;
 }
 
+
+/*FORM*/
 form {
     text-align: center;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-
