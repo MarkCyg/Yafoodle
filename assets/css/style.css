@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+header {
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+
+header h6 {
+    font-style: italic;
+}
+
+form {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
