@@ -6,7 +6,7 @@
   
 /*BODY*/
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 
@@ -43,8 +43,8 @@ form {
   /* Style the buttons that are used to open the tab content */
   .tab button {
     background-color: inherit;
-    float: left;
-    border: none;
+    float: center;
+    border: 2px white;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
@@ -53,7 +53,7 @@ form {
   
   /* Change background color of buttons on hover */
   .tab button:hover {
-    background-color: #ddd;
+    background-color: rgb(209, 204, 204);
   }
   
   /* Create an active/current tablink class */
@@ -77,5 +77,5 @@ form {
   /* Go from zero to full opacity */
   @keyframes fadeEffect {
     from {opacity: 0;}
-    to {opacity: 1;}
+    to {opacity: 2;}
   }
