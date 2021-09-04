@@ -53,7 +53,7 @@ form {
   
   /* Change background color of buttons on hover */
   .tab button:hover {
-    background-color: rgb(197, 193, 193);
+    background-color: rgb(209, 204, 204);
   }
   
   /* Create an active/current tablink class */

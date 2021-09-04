@@ -4,7 +4,7 @@ var apiID = 'a65ff64e';
 var apiKey = 'be6264a5a45b927edcca5d188d013025'
 
 function recipeFetch(){
-    fetch('https://api.edamam.com/api/recipes/v2?type=public&q=cuisineType=&app_id=' + '&q=' + apiID + '&app_key=' + apiKey)
+    fetch('https://api.edamam.com/api/recipes/v2?type=public&q=cuisineType=&app_id=' + apiID + '&app_key=' + apiKey)
     .then(function(response){
         if(response.ok){
             console.log(response);
