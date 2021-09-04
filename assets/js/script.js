@@ -25,7 +25,7 @@ function youtubeFetch(){
 
 recipeFetch();
 
-function openCity(evt) {
+function openCity(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
   
@@ -42,6 +42,6 @@ function openCity(evt) {
     }
   
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(evt).style.display = "block";
+    document.getElementById().style.display = "block";
     evt.currentTarget.className += " active";
   }
