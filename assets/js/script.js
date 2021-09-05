@@ -49,6 +49,7 @@ function recipeFetch(){
             return response.json();
         }
         else {
+        //  ***TEMP***
             alert('Error: ' + response.statusText);
         }
 
@@ -65,9 +66,8 @@ function recipeFetch(){
             result.push(arr[random]);
             arr[random] = arr[20 - i];   
         }
-        console.log(arr);
+        
 
-        // recipeList.innerHTML = '<li>' + recipeListArr[result[0]].recipe.label + '</li> <li>' +  recipeListArr[result[1]].recipe.label + '</li> <li>' +  recipeListArr[result[2]].recipe.label + '</li> <li>' +  recipeListArr[result[3]].recipe.label + '</li> <li>' +  recipeListArr[result[4]].recipe.label + '</li>';
         var resultsEl = document.querySelector('#recipe-list');
         resultsEl.textContent = '';
         for (var i = 0; i < 5; i++) {
@@ -78,6 +78,7 @@ function recipeFetch(){
             var site = recipeListArr[result[i]].recipe.source;
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched');
         }
+        console.log(result);
     })
 };
 
