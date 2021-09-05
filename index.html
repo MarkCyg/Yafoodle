@@ -4,9 +4,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+<!-- Milligram CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+<link rel="stylesheet" href="./assets/css/style.css">
+
+    <title>YaFoodle</title>
 </head>
 <body>
+
+
+    <header>
+        <h1 class="yafoo">Yafoodle</h1> 
+        <h6>The Poor Man's Pintrest</h6>
+    </header>
+
+    <form>
+        <fieldset>
+          <label for="searchField">Search</label>
+          <input class="search" type="text" placeholder="Whatcha Tryna Cook?" id="nameField" aria-label="searchbar">
+          <label for="cuisineField">Cuisine</label>
+          <select id="cuisineField">
+            <option class="cuisine" value="#">Make Your Selection</option>
+            <option class="cuisine" value="#">One Pot/Pan Meals</option>
+            <option class="cuisine" value="#">Mediterranean</option>
+            <option class="cuisine" value="#">Asian</option>
+            <option class="cuisine" value="#">Mexican/Latin America</option>
+            <option class="cuisine" value="#">American</option>
+          </select>                
+         
+         <!----check boxes----->
+          <div class="checkbox">
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Gluten Free</label>
+
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Vegitarian</label>
+
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Vegan</label>
+
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Keto</label>
+
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Lactose Intolerant</label>
+          </div>
+
+          <!----button------>
+          <input class="button1" type="submit" value="Search" aria-label="search button">
+          <input class="button2" type="reset" value="Reset form" aria-label="reset button">
+        </fieldset>
+      </form>
+
+      <!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event)">Recipe</button>
+  <button class="tablinks" onclick="openCity(event)">Video</button>
+</div>
+
+<!-- Tab content -->
+<div id="Recipe" class="tabcontent">
+  <h3>Recipe</h3>
+  <p>Recipe goes here</p>
+</div>
+
+<div id="Video" class="tabcontent">
+  <h3>Video</h3>
+  <p>Video Goes Here</p>
+</div>
+
     
+<script src="./assets/js/script.js"></script> 
+
 </body>
 </html>
