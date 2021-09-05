@@ -79,3 +79,75 @@ form {
     from {opacity: 0;}
     to {opacity: 2;}
   }
+
+  h3 {
+    margin-bottom: 0px;
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  .recipe, .favorite-recipe {
+    background-color: rgba(155, 77, 202, 0.1);
+    border: 0.1rem solid #d1d1d1;
+    border-radius: .4rem;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    transition: all .3s ease-in-out;
+    margin-bottom: 20px;
+  }
+
+  .recipe:hover { 
+    transform: scale(1.05);
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    /* border-color: #9b4dca; */
+  }
+
+  .star, .fav {
+    padding: 20px 20px 20px 0;
+  }
+
+  button.favorite {
+    background-color: rgba(155, 77, 202, 0);
+    border: none;
+    color: #ca9b4d;
+    font-size: 2.8rem;
+    padding: 0px;
+    margin: 0px;
+}
+
+div.star span.empty-star, div.fav span.full-star {
+  display:inline;
+}
+
+div.star:hover span.empty-star, div.fav:hover span.full-star {
+  display:none;
+}
+
+div.star span.add-star, div.fav span.remove-star {
+  display:none;
+}
+
+div.star:hover span.add-star, div.fav:hover span.remove-star {
+  display:inline;
+}
+
+.recipe-data {
+  padding: 20px;
+}
+
+.recipe-data a:hover {
+  color: #9b4dca;
+}
+
+.website-name {
+  margin-bottom: 0px;
+}
+
+.recipe-img img {
+  height: 94px;
+  width: 141px;
+  border-radius: .4rem 0 0 .4rem;
+  object-fit: cover;
+  display: block;
+}
