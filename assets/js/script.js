@@ -1,5 +1,12 @@
 // Edamam api info
 var apiID = 'a65ff64e';
+<<<<<<< HEAD
+
+var apiKey = 'be6264a5a45b927edcca5d188d013025'
+
+function recipeFetch(){
+    fetch('https://api.edamam.com/api/recipes/v2?type=public&q=broccoli&cuisineType=italian&app_id=' + apiID + '&app_key=' + apiKey + '&health=vegan')
+=======
 var apiKey = 'be6264a5a45b927edcca5d188d013025';
 
 // DOM Selectors for Search Field
@@ -43,6 +50,7 @@ function recipeFetch(){
         cuisineStr = '&cuisineType=' + userCuisineInput;
     }
     fetch('https://api.edamam.com/api/recipes/v2?type=public&q=' + userTextInput + cuisineStr + checkboxStr + '&app_id=' + apiID + '&app_key=' + apiKey)
+>>>>>>> 0ac74ea1aec28df70562dfa8816cbaa5e368bf76
     .then(function(response){
         if(response.ok){
             console.log(response);
@@ -51,6 +59,40 @@ function recipeFetch(){
         else {
             alert('Error: ' + response.statusText);
         }
+<<<<<<< HEAD
+         
+    })
+    
+}
+
+function youtubeFetch(){
+    fetch('https://www.googleapis.com/youtube/v3/search?part=snippet')
+}
+
+
+recipeFetch();
+
+function openCity(evt) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+  
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(evt).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+=======
 
     })
     .then(function(response){
@@ -208,3 +250,4 @@ function favoritesListener() {
 loadFavorites();
 resultsListener();
 favoritesListener();
+>>>>>>> 0ac74ea1aec28df70562dfa8816cbaa5e368bf76
