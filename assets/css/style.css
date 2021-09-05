@@ -120,19 +120,19 @@ button.fetched, button.favorite {
     margin: 0px;
 }
 
-.fetched-star span.empty-star, .favorite-star span.full-star {
+div.fetched-star span.empty-star, div.favorite-star span.full-star {
   display:inline;
 }
 
-.fetched-star:hover span.empty-star, .favorite-star:hover span.full-star {
+div.fetched-star:hover span.empty-star, div.favorite-star:hover span.full-star {
   display:none;
 }
 
-.fetched-star span.add-star, .favorite-star span.remove-star {
+div.fetched-star span.add-star, div.favorite-star span.remove-star {
   display:none;
 }
 
-.fetched-star:hover span.add-star, .favorite-star:hover span.remove-star {
+div.fetched-star:hover span.add-star, div.favorite-star:hover span.remove-star {
   display:inline;
 }
 

@@ -157,6 +157,7 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
     imgDiv.classList = 'recipe-img';
     var recipeImgLink = document.createElement('a');
     recipeImgLink.setAttribute('href', link);
+    recipeImgLink.setAttribute('target', '_blank');
     var recipeImg = document.createElement('img');
     recipeImg.setAttribute('src', image);
     recipeImg.setAttribute('alt', name);
@@ -164,6 +165,7 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
     dataDiv.classList = 'recipe-data';
     var recipeLink = document.createElement('a');
     recipeLink.setAttribute('href', link);
+    recipeLink.setAttribute('target', '_blank');
     var recipeName = document.createElement('h3');
     recipeName.textContent = name;
     var recipeSite = document.createElement('p');
