@@ -2,6 +2,10 @@
 var apiID = 'a65ff64e';
 var apiKey = 'be6264a5a45b927edcca5d188d013025';
 
+// YouTube API info
+
+var ytApiKey = 'AIzaSyAUT7vv2wxNeq7foqQDoHXaonN67hFemOs';
+
 // DOM Selectors for Search Field
 var searchBtn = document.getElementById('searchBtn');
 var resetBtn = document.getElementById('resetBtn');
@@ -48,6 +52,7 @@ function recipeFetch(){
             return response.json();
         }
         else {
+        //  ***TEMP***
             alert('Error: ' + response.statusText);
         }
 
@@ -64,6 +69,7 @@ function recipeFetch(){
             result.push(arr[random]);
             arr[random] = arr[20 - i];   
         }
+        
 
         var resultsEl = document.querySelector('#recipe-list');
         resultsEl.textContent = '';
@@ -76,29 +82,15 @@ function recipeFetch(){
             var starBtnHtml = "<span class='empty-star'><span class='iconify' data-icon='mdi:star-outline'></span></span><span class='add-star'><span class='iconify' data-icon='mdi:star-plus-outline'></span></span>";
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched', starBtnHtml);
         }
+        console.log(result);
+        // return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
     })
+    .then(function(youtuberesponse){
+        console.log(youtuberesponse);
+        return youtuberesponse.json();     
+    })
+  
 };
-
-function openCity(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-  
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-  
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-  
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById().style.display = "block";
-    evt.currentTarget.className += " active";
-  }
 
 //   ***JOHN'S STUFF***
 
