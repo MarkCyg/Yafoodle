@@ -83,7 +83,7 @@ function recipeFetch(){
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched');
         }
         console.log(result);
-        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + userTextInput + checkboxStr.replace('&health=', ' '))
+        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
     })
     .then(function(youtuberesponse){
         console.log(youtuberesponse);
