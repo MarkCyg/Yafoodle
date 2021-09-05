@@ -2,6 +2,10 @@
 var apiID = 'a65ff64e';
 var apiKey = 'be6264a5a45b927edcca5d188d013025';
 
+// YouTube API info
+
+var ytApiKey = 'AIzaSyAUT7vv2wxNeq7foqQDoHXaonN67hFemOs';
+
 // DOM Selectors for Search Field
 var searchBtn = document.getElementById('searchBtn');
 var resetBtn = document.getElementById('resetBtn');
@@ -49,6 +53,7 @@ function recipeFetch(){
             return response.json();
         }
         else {
+        //  ***TEMP***
             alert('Error: ' + response.statusText);
         }
 
@@ -65,9 +70,8 @@ function recipeFetch(){
             result.push(arr[random]);
             arr[random] = arr[20 - i];   
         }
-        console.log(arr);
+        
 
-        // recipeList.innerHTML = '<li>' + recipeListArr[result[0]].recipe.label + '</li> <li>' +  recipeListArr[result[1]].recipe.label + '</li> <li>' +  recipeListArr[result[2]].recipe.label + '</li> <li>' +  recipeListArr[result[3]].recipe.label + '</li> <li>' +  recipeListArr[result[4]].recipe.label + '</li>';
         var resultsEl = document.querySelector('#recipe-list');
         resultsEl.textContent = '';
         for (var i = 0; i < 5; i++) {
@@ -78,7 +82,14 @@ function recipeFetch(){
             var site = recipeListArr[result[i]].recipe.source;
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched');
         }
+        console.log(result);
+        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + userTextInput + checkboxStr.replace('&health=', ' '))
     })
+    .then(function(youtuberesponse){
+        console.log(youtuberesponse);
+        return youtuberesponse.json();     
+    })
+  
 };
 
 //   ***JOHN'S STUFF***
