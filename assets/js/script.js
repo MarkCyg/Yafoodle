@@ -2,6 +2,10 @@
 var apiID = 'a65ff64e';
 var apiKey = 'be6264a5a45b927edcca5d188d013025';
 
+// YouTube API info
+
+var ytApiKey = 'AIzaSyAUT7vv2wxNeq7foqQDoHXaonN67hFemOs';
+
 // DOM Selectors for Search Field
 var searchBtn = document.getElementById('searchBtn');
 var resetBtn = document.getElementById('resetBtn');
@@ -79,7 +83,13 @@ function recipeFetch(){
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched');
         }
         console.log(result);
+        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + userTextInput + checkboxStr.replace('&health=', ' '))
     })
+    .then(function(youtuberesponse){
+        console.log(youtuberesponse);
+        return youtuberesponse.json();     
+    })
+  
 };
 
 //   ***JOHN'S STUFF***
