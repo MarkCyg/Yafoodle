@@ -1,10 +1,45 @@
 // Edamam api info
 var apiID = 'a65ff64e';
+var apiKey = 'be6264a5a45b927edcca5d188d013025';
 
-var apiKey = 'be6264a5a45b927edcca5d188d013025'
+// DOM Selectors for Search Field
+var searchBtn = document.getElementById('searchBtn');
+var resetBtn = document.getElementById('resetBtn');
 
+
+// Event listener to make sure text field is filled
+searchBtn.addEventListener('click', function(event){
+    event.preventDefault();
+    var userTextInput = document.getElementById('nameField').value;
+
+    if(userTextInput === ''){
+        alert('Please enter a food item!')
+    }
+    else{
+        recipeFetch();
+    }
+});
+
+
+// Edamam fetch request.  Selects DOM elements in the form.
 function recipeFetch(){
-    fetch('https://api.edamam.com/api/recipes/v2?type=public&q=cuisineType=&app_id=' + apiID + '&app_key=' + apiKey)
+    var userTextInput = document.getElementById('nameField').value;
+    var userCuisineInput = document.getElementById('cuisineField').value;
+
+    // For Each function pushes parameter for API and the value of the check box to an array.  turn the array into a string with join() 
+    var checkboxArr = [];
+    document.querySelectorAll('.confirmField').forEach((elem) => { 
+        if(elem.checked){
+            checkboxArr.push('&health=' + elem.value);
+    }
+    }) 
+    var checkboxStr = checkboxArr.join('');
+    // fills api with a string if there us a user input for cusine type
+    var cusineStr = '';
+    if(userCuisineInput){
+        cusineStr = '&cuisineType=' + userCuisineInput;
+    }
+    fetch('https://api.edamam.com/api/recipes/v2?type=public&q=' + userTextInput + cusineStr + checkboxStr + '&app_id=' + apiID + '&app_key=' + apiKey)
     .then(function(response){
         if(response.ok){
             console.log(response);
@@ -14,18 +49,13 @@ function recipeFetch(){
             alert('Error: ' + response.statusText);
         }
          
-    })
-    
-}
-
-function youtubeFetch(){
-    fetch('https://www.googleapis.com/youtube/v3/search?part=snippet')
-}
+    })   
+};
 
 
-recipeFetch();
+// recipeFetch();
 
-function openCity(evt) {
+function openCity(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
   
@@ -42,6 +72,6 @@ function openCity(evt) {
     }
   
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(evt).style.display = "block";
+    document.getElementById().style.display = "block";
     evt.currentTarget.className += " active";
   }
