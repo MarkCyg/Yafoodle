@@ -80,34 +80,38 @@ form {
     to {opacity: 2;}
   }
 
+  .container {
+    max-width: 100%;
+  }
+
   h3 {
     margin-bottom: 0px;
     line-height: 1;
     font-weight: 600;
   }
 
-  .recipe, .favorite-recipe {
+  .fetched-recipe, .favorite-recipe {
     background-color: rgba(155, 77, 202, 0.1);
     border: 0.1rem solid #d1d1d1;
     border-radius: .4rem;
-    width: 50%;
+    width: 90%;
     margin: 0 auto;
     display: flex;
     transition: all .3s ease-in-out;
     margin-bottom: 20px;
   }
 
-  .recipe:hover { 
+  .fetched-recipe:hover, .favorite-recipe:hover { 
     transform: scale(1.05);
     box-shadow: 0 0 11px rgba(33,33,33,.2);
     /* border-color: #9b4dca; */
   }
 
-  .star, .fav {
+  .fetched-star, .favorite-star {
     padding: 20px 20px 20px 0;
   }
 
-  button.favorite {
+button.fetched, button.favorite {
     background-color: rgba(155, 77, 202, 0);
     border: none;
     color: #ca9b4d;
@@ -116,19 +120,19 @@ form {
     margin: 0px;
 }
 
-div.star span.empty-star, div.fav span.full-star {
+.fetched-star span.empty-star, .favorite-star span.full-star {
   display:inline;
 }
 
-div.star:hover span.empty-star, div.fav:hover span.full-star {
+.fetched-star:hover span.empty-star, .favorite-star:hover span.full-star {
   display:none;
 }
 
-div.star span.add-star, div.fav span.remove-star {
+.fetched-star span.add-star, .favorite-star span.remove-star {
   display:none;
 }
 
-div.star:hover span.add-star, div.fav:hover span.remove-star {
+.fetched-star:hover span.add-star, .favorite-star:hover span.remove-star {
   display:inline;
 }
 

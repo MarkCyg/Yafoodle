@@ -68,13 +68,51 @@
   <!-- Main container containing recipe list column, and YouTube Column -->
   <main class="container">
     <div class="row">
-      <ul  id="recipe-list" class="column">
- 
-      </ul>
-      <div id="youtube-container" class="column">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam aut ex quis blanditiis, a itaque in doloribus eum obcaecati saepe nihil enim harum. Facilis nulla esse deserunt sit eum repudiandae.</p>
-      </div>
+      <section  id="recipe-list" class="column">
+        <article class="recipe" data-id="1">
+          <div class="recipe-img">
+            <a href="https://www.onceuponachef.com/recipes/chicken-marsala.html"><img src="assets/images/marsala.jpg" alt="marsala"></a>
+          </div>
+          <div class="recipe-data">
+            <a href="https://www.onceuponachef.com/recipes/chicken-marsala.html">
+              <h3>Chicken Marsala</h3>
+              <p class="website-name">Once Upon a Chef</p>
+            </a>
+          </div>
+          <div class="star">
+            <button class="favorite">
+              <span class="empty-star"><span class="iconify" data-icon="mdi:star-outline"></span></span>
+              <span class="add-star"><span class="iconify" data-icon="mdi:star-plus-outline"></span></span>
+            </button>
+          </div>
+        </article>
+        <article class="recipe" data-id="2">
+          <div class="recipe-img">
+            <a href="https://www.delish.com/cooking/recipe-ideas/recipes/a53695/one-pot-chicken-alfredo-recipe/"><img src="assets/images/alfredo.jpg" alt="alfredo"></a>
+          </div>
+          <div class="recipe-data">
+            <a href="https://www.delish.com/cooking/recipe-ideas/recipes/a53695/one-pot-chicken-alfredo-recipe/">
+              <h3>Chicken Alfredo</h3>
+              <p class="website-name">Delish</p>
+            </a>
+          </div>
+          <div class="star">
+            <button class="favorite">
+              <span class="empty-star"><span class="iconify" data-icon="mdi:star-outline"></span></span>
+              <span class="add-star"><span class="iconify" data-icon="mdi:star-plus-outline"></span></span>
+            </button>
+          </div>
+        </article>
+      </section>
+      <section id="youtube-container" class="column">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam aut ex quis blanditiis, a itaque in doloribus eum obcaecati saepe nihil enim harum. Facilis nsectionla esse deserunt sit eum repudiandae.</p>
+      </section>
     </div>
+    <!-- Favorites Placeholder -->
+    <section>
+      <h2>Favorites...</h2>
+      <div id="favorites-container"></div>
+    </section>
   </main>
 
       <!-- Tab links -->
@@ -94,7 +132,7 @@
   <p>Video Goes Here</p>
 </div>
 
-    
+<script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>    
 <script src="./assets/js/script.js"></script> 
 
 </body>
