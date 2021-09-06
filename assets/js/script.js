@@ -240,7 +240,7 @@ favoritesListener();
           },
           events: {
             'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
+         //   'onStateChange': onPlayerStateChange
           }
         });
       }
