@@ -49,7 +49,6 @@ function recipeFetch(){
     fetch('https://api.edamam.com/api/recipes/v2?type=public&q=' + userTextInput + cuisineStr + checkboxStr + '&app_id=' + apiID + '&app_key=' + apiKey)
     .then(function(response){
         if(response.ok){
-            console.log(response);
             return response.json();
         }
         else {
@@ -80,7 +79,8 @@ function recipeFetch(){
             var link = recipeListArr[result[i]].recipe.url;
             var name = recipeListArr[result[i]].recipe.label;
             var site = recipeListArr[result[i]].recipe.source;
-            generateListing(listingId, image, name, site, link, resultsEl, 'fetched');
+            var starBtnHtml = "<span class='empty-star'><span class='iconify' data-icon='mdi:star-outline'></span></span><span class='add-star'><span class='iconify' data-icon='mdi:star-plus-outline'></span></span>";
+            generateListing(listingId, image, name, site, link, resultsEl, 'fetched', starBtnHtml);
         }
         console.log(result);
         return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
@@ -135,11 +135,12 @@ var loadFavorites = function(starredObj) {
         var link = favArray[i].link;
         var name = favArray[i].name;
         var site = favArray[i].site;
-        generateListing(listingId, image, name, site, link, favoritesEl, 'favorite');
+        var starBtnHtml = "<span class='full-star'><span class='iconify' data-icon='mdi:star'></span></span><span class='remove-star'><span class='iconify' data-icon='mdi:star-remove'></span></span>";
+        generateListing(listingId, image, name, site, link, favoritesEl, 'favorite', starBtnHtml);
     }
 }
 
-var generateListing = function(listingId, image, name, site, link, parentDiv, className) {
+var generateListing = function(listingId, image, name, site, link, parentDiv, className, starBtnHtml) {
     var recipeListingEl = document.createElement('article');
     recipeListingEl.classList = className + '-recipe';
     recipeListingEl.setAttribute('data-' + className + '-id', listingId);
@@ -165,7 +166,7 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
     starDiv.classList = className + '-star';
     var starBtn = document.createElement('button');
     starBtn.classList = className;
-    starBtn.innerHTML = "<span class='full-star'><span class='iconify' data-icon='mdi:star'></span></span><span class='remove-star'><span class='iconify' data-icon='mdi:star-remove'></span></span>";
+    starBtn.innerHTML = starBtnHtml;
 
     starDiv.appendChild(starBtn);
 
@@ -190,7 +191,7 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
         var recipeName = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-data a h3").textContent;
         var recipeSite = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-data a p").textContent;
         var starredObj = { 'name': recipeName, 'site': recipeSite, 'image': recipeImg, 'link': recipeUrl};
-        event.target.closest('.star button').innerHTML = "<span class='iconify' data-icon='mdi:star'></span>";
+        event.target.closest('.fetched-star button').innerHTML = "<span class='iconify' data-icon='mdi:star'></span>";
         loadFavorites(starredObj);
     }
 
@@ -207,16 +208,19 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
     }
 
 function resultsListener() {
-  var stars = document.querySelectorAll('.star');
+  var stars = document.querySelectorAll('.fetched-star');
+  console.log(stars);
   stars.forEach(el => el.addEventListener('click', starClickHandler));
 }
 
 function favoritesListener() {
-  var favorites = document.querySelectorAll('.fav');
+  var favorites = document.querySelectorAll('.favorite-star');
+  console.log(favorites)
   favorites.forEach(el => el.addEventListener('click', favClickHandler));
 }
 
 loadFavorites();
+
 resultsListener();
 favoritesListener();
 
