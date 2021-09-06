@@ -61,15 +61,17 @@ function recipeFetch(){
         // This code finds a random index out of the recipeListArr. I wanted to select 5 indexes out of the 20 that are given to us at random.  However, I didn't want to repeat the same index, so I found this method, after googling, that creates a new array with random numbers that aren't repeating(the result[]).  After we have our 5 random numbers in the array,I can change the inner HTML of recipeList to include the info out of a random Index from the JSON response. So recipeListArr[result[0]] means recipeListArr[random].
         
         var recipeListArr = response.hits;
-        console.log(recipeListArr);
-        let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15, 16, 17, 18, 19, 20]
+       
+        let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15, 16, 17, 18, 19]
         let result = []
         for (let i = 0; i < 5; i++) {
-            const random = Math.floor(Math.random() * (20 - i))
+            const random = Math.floor(Math.random() * (19 - i))
             result.push(arr[random]);
-            arr[random] = arr[20 - i];   
+            arr[random] = arr[19 - i];   
         }
         
+        console.log(result);
+        console.log(recipeListArr);
 
         var resultsEl = document.querySelector('#recipe-list');
         resultsEl.textContent = '';
@@ -82,7 +84,7 @@ function recipeFetch(){
             var starBtnHtml = "<span class='empty-star'><span class='iconify' data-icon='mdi:star-outline'></span></span><span class='add-star'><span class='iconify' data-icon='mdi:star-plus-outline'></span></span>";
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched', starBtnHtml);
         }
-        console.log(result);
+        
         return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
     })
     .then(function(youtuberesponse){
