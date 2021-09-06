@@ -210,12 +210,12 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
 }
 
   var starClickHandler = function(event) {
-        var recipeId = event.target.closest('.recipe').getAttribute('data-id');
+        var recipeId = event.target.closest('.fetched-recipe').getAttribute('data-fetched-id');
         console.log('You have starred Recipe #' + recipeId);
-        var recipeUrl = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-img a").getAttribute('href');
-        var recipeImg = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-img a img").getAttribute('src');
-        var recipeName = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-data a h3").textContent;
-        var recipeSite = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-data a p").textContent;
+        var recipeUrl = document.querySelector("article[data-fetched-id='" + recipeId + "'] div.recipe-img a").getAttribute('href');
+        var recipeImg = document.querySelector("article[data-fetched-id='" + recipeId + "'] div.recipe-img a img").getAttribute('src');
+        var recipeName = document.querySelector("article[data-fetched-id='" + recipeId + "'] div.recipe-data a h3").textContent;
+        var recipeSite = document.querySelector("article[data-fetched-id='" + recipeId + "'] div.recipe-data a p").textContent;
         var starredObj = { 'name': recipeName, 'site': recipeSite, 'image': recipeImg, 'link': recipeUrl};
         event.target.closest('.fetched-star button').innerHTML = "<span class='iconify' data-icon='mdi:star'></span>";
         loadFavorites(starredObj);
@@ -233,19 +233,12 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
         favoritesListener();
     }
 
-function resultsListener() {
-  var stars = document.querySelectorAll('.fetched-star');
-  console.log(stars);
-  stars.forEach(el => el.addEventListener('click', starClickHandler));
-}
-
-function favoritesListener() {
-  var favorites = document.querySelectorAll('.favorite-star');
-  console.log(favorites)
-  favorites.forEach(el => el.addEventListener('click', favClickHandler));
-}
-
 loadFavorites();
 
-resultsListener();
-favoritesListener();
+addDynamicEventListener(document.body, 'click', '.fetched-star', function (e) {
+    starClickHandler(e);
+});
+
+addDynamicEventListener(document.body, 'click', '.favorite-star', function (e) {
+    favClickHandler(e);
+});
