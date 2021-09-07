@@ -136,10 +136,11 @@ function recipeFetch(){
             ytIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
             ytContainer.appendChild(ytIframe);
             console.log(ytId);
-
         })
+
     })
 };
+
 
 //   ***JOHN'S STUFF***
 

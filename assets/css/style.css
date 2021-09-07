@@ -45,7 +45,8 @@ form {
 /* IFRAME */
 
 iframe {
-  border: solid, white;
+  width: 500px;
+  height: 400px;
 }
 
   .fetched-recipe, .favorite-recipe {
