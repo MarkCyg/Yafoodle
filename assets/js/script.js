@@ -7,7 +7,7 @@ var apiKey = 'be6264a5a45b927edcca5d188d013025';
 var nickYtApiKey = 'AIzaSyAUT7vv2wxNeq7foqQDoHXaonN67hFemOs';
 var seanYtApiKey = 'AIzaSyAFrdBZ18oQzxQEt3n9K_era03MHQ88F18';
 
-// Hiding youtube container
+// Grabbing youtube container
 
 var ytContainer = document.getElementById('youtube-container');
 // ytContainer.style.display = 'none';
@@ -123,9 +123,9 @@ function recipeFetch(){
     .then(function(youtuberesponse){
         // Sets inner html of parent to remove previous video list.
         ytContainer.innerHTML = '<h2>Videos for your Recipe Idea!</h2>';
-        // slecting the arr that holds the 5 videos from the search
+        // selecting the arr that holds the 5 videos from the search
         var videoIdArr = youtuberesponse.items;
-        // For each index, select the videoId, create an yt embeded iframe, place the id into the iframe, and append each iframe.
+        // For each index, select the videoId, create a yt embed iframe, place the id into the iframe, and append each iframe.
         let i = 0;
         videoIdArr.forEach(function(elem, i){
             var ytId = videoIdArr[i].id.videoId;
