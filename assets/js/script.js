@@ -4,12 +4,13 @@ var apiKey = 'be6264a5a45b927edcca5d188d013025';
 
 // YouTube API info
 
-var ytApiKey = 'AIzaSyAUT7vv2wxNeq7foqQDoHXaonN67hFemOs';
+var nickYtApiKey = 'AIzaSyAUT7vv2wxNeq7foqQDoHXaonN67hFemOs';
+var seanYtApiKey = 'AIzaSyAFrdBZ18oQzxQEt3n9K_era03MHQ88F18';
 
 // Hiding youtube container
 
 var ytContainer = document.getElementById('youtube-container');
-ytContainer.style.display = 'none';
+// ytContainer.style.display = 'none';
 
 // DOM Selectors for Search Field
 var searchBtn = document.getElementById('searchBtn');
@@ -113,21 +114,29 @@ function recipeFetch(){
             var starBtnHtml = "<span class='empty-star'><span class='iconify' data-icon='mdi:star-outline'></span></span><span class='add-star'><span class='iconify' data-icon='mdi:star-plus-outline'></span></span>";
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched', starBtnHtml);
         }
-        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
+        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + seanYtApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
     })
     .then(function(youtuberesponse){
         console.log(youtuberesponse);
         return youtuberesponse.json();     
     })
     .then(function(youtuberesponse){
+        
         var videoIdArr = youtuberesponse.items;
         let i = 0;
         videoIdArr.forEach(function(elem, i){
             var ytId = videoIdArr[i].id.videoId;
             var ytIframe = document.createElement('iframe');
-            ytIframe.setAttribute(elem, {'src': 'https://www.youtube.com/embed/' + ytId, 'title': 'YouTube Video Player', 'frameborder': '0', 'allow': 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'});
-            });     
-    })};
+            ytIframe.setAttribute('src', 'https://www.youtube.com/embed/' + ytId);
+            ytIframe.setAttribute('title', 'YouTube Video Player');
+            ytIframe.setAttribute('frameborder', '0');
+            ytIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+            ytContainer.appendChild(ytIframe);
+            console.log(ytId);
+
+        })
+    })
+};
 
 //   ***JOHN'S STUFF***
 
