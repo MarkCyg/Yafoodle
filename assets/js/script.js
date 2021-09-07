@@ -49,7 +49,6 @@ function recipeFetch(){
     fetch('https://api.edamam.com/api/recipes/v2?type=public&q=' + userTextInput + cuisineStr + checkboxStr + '&app_id=' + apiID + '&app_key=' + apiKey)
     .then(function(response){
         if(response.ok){
-            console.log(response);
             return response.json();
         }
         else {
@@ -59,30 +58,56 @@ function recipeFetch(){
 
     })
     .then(function(response){
+        // ***PREVIOUS CODE***
         // This code finds a random index out of the recipeListArr. I wanted to select 5 indexes out of the 20 that are given to us at random.  However, I didn't want to repeat the same index, so I found this method, after googling, that creates a new array with random numbers that aren't repeating(the result[]).  After we have our 5 random numbers in the array,I can change the inner HTML of recipeList to include the info out of a random Index from the JSON response. So recipeListArr[result[0]] means recipeListArr[random].
-        
+        // let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15, 16, 17, 18, 19]
+        // let result = []
+        // for (let i = 0; i < 5; i++) {
+        //     const random = Math.floor(Math.random() * (19 - i))
+        //     result.push(arr[random]);
+        //     arr[random] = arr[19 - i];   
+        // }
+        // ***END***
+
         var recipeListArr = response.hits;
         console.log(recipeListArr);
-        let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15, 16, 17, 18, 19, 20]
-        let result = []
-        for (let i = 0; i < 5; i++) {
-            const random = Math.floor(Math.random() * (20 - i))
-            result.push(arr[random]);
-            arr[random] = arr[20 - i];   
-        }
-        
 
+        // if less than 5 results, only iterate the length of the recipeListArr
+        var displayNumber = 5
+        if (recipeListArr.length < 5) {
+            displayNumber = recipeListArr.length
+        }
+        console.log('displayNumber = ' + displayNumber);
+
+        // Create an array of numbers which matches the length of the recipeListArr (20 max | values: 0-19)
+        let numberArr = []
+        for (let i = 0; i < recipeListArr.length; i++) {
+            numberArr.push(i);
+        }
+
+        // Create an array of unique random numbers pulled from the numberArr. Determine its length by displayNumber.
+        let randomResults = []
+        for (let i = 0; i < displayNumber; i++) {
+            const random = Math.floor(Math.random() * ((recipeListArr.length - 1) - i));
+            randomResults.push(numberArr[random]);
+            // Remove the selected number from the numberArr to avoid duplication in randomResults
+            numberArr.splice(random, 1);
+        }
+        console.log(randomResults);
+        
+        // Remove any previous content from #recipe-list
         var resultsEl = document.querySelector('#recipe-list');
         resultsEl.textContent = '';
-        for (var i = 0; i < 5; i++) {
+        // Generate listings on the page; choose recipes based on randomResults array
+        for (var i = 0; i < displayNumber; i++) {
             var listingId = i;
-            var image = recipeListArr[result[i]].recipe.image;
-            var link = recipeListArr[result[i]].recipe.url;
-            var name = recipeListArr[result[i]].recipe.label;
-            var site = recipeListArr[result[i]].recipe.source;
-            generateListing(listingId, image, name, site, link, resultsEl, 'fetched');
+            var image = recipeListArr[randomResults[i]].recipe.image;
+            var link = recipeListArr[randomResults[i]].recipe.url;
+            var name = recipeListArr[randomResults[i]].recipe.label;
+            var site = recipeListArr[randomResults[i]].recipe.source;
+            var starBtnHtml = "<span class='empty-star'><span class='iconify' data-icon='mdi:star-outline'></span></span><span class='add-star'><span class='iconify' data-icon='mdi:star-plus-outline'></span></span>";
+            generateListing(listingId, image, name, site, link, resultsEl, 'fetched', starBtnHtml);
         }
-        console.log(result);
         return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + ytApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
     })
     .then(function(youtuberesponse){
@@ -135,11 +160,12 @@ var loadFavorites = function(starredObj) {
         var link = favArray[i].link;
         var name = favArray[i].name;
         var site = favArray[i].site;
-        generateListing(listingId, image, name, site, link, favoritesEl, 'favorite');
+        var starBtnHtml = "<span class='full-star'><span class='iconify' data-icon='mdi:star'></span></span><span class='remove-star'><span class='iconify' data-icon='mdi:star-remove'></span></span>";
+        generateListing(listingId, image, name, site, link, favoritesEl, 'favorite', starBtnHtml);
     }
 }
 
-var generateListing = function(listingId, image, name, site, link, parentDiv, className) {
+var generateListing = function(listingId, image, name, site, link, parentDiv, className, starBtnHtml) {
     var recipeListingEl = document.createElement('article');
     recipeListingEl.classList = className + '-recipe';
     recipeListingEl.setAttribute('data-' + className + '-id', listingId);
@@ -165,7 +191,7 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
     starDiv.classList = className + '-star';
     var starBtn = document.createElement('button');
     starBtn.classList = className;
-    starBtn.innerHTML = "<span class='full-star'><span class='iconify' data-icon='mdi:star'></span></span><span class='remove-star'><span class='iconify' data-icon='mdi:star-remove'></span></span>";
+    starBtn.innerHTML = starBtnHtml;
 
     starDiv.appendChild(starBtn);
 
@@ -183,14 +209,14 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
 }
 
   var starClickHandler = function(event) {
-        var recipeId = event.target.closest('.recipe').getAttribute('data-id');
+        var recipeId = event.target.closest('.fetched-recipe').getAttribute('data-fetched-id');
         console.log('You have starred Recipe #' + recipeId);
-        var recipeUrl = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-img a").getAttribute('href');
-        var recipeImg = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-img a img").getAttribute('src');
-        var recipeName = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-data a h3").textContent;
-        var recipeSite = document.querySelector("article[data-id='" + recipeId + "'] div.recipe-data a p").textContent;
+        var recipeUrl = document.querySelector("article[data-fetched-id='" + recipeId + "'] div.recipe-img a").getAttribute('href');
+        var recipeImg = document.querySelector("article[data-fetched-id='" + recipeId + "'] div.recipe-img a img").getAttribute('src');
+        var recipeName = document.querySelector("article[data-fetched-id='" + recipeId + "'] div.recipe-data a h3").textContent;
+        var recipeSite = document.querySelector("article[data-fetched-id='" + recipeId + "'] div.recipe-data a p").textContent;
         var starredObj = { 'name': recipeName, 'site': recipeSite, 'image': recipeImg, 'link': recipeUrl};
-        event.target.closest('.star button').innerHTML = "<span class='iconify' data-icon='mdi:star'></span>";
+        event.target.closest('.fetched-star button').innerHTML = "<span class='iconify' data-icon='mdi:star'></span>";
         loadFavorites(starredObj);
     }
 
@@ -206,16 +232,12 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
         favoritesListener();
     }
 
-function resultsListener() {
-  var stars = document.querySelectorAll('.star');
-  stars.forEach(el => el.addEventListener('click', starClickHandler));
-}
-
-function favoritesListener() {
-  var favorites = document.querySelectorAll('.fav');
-  favorites.forEach(el => el.addEventListener('click', favClickHandler));
-}
-
 loadFavorites();
-resultsListener();
-favoritesListener();
+
+addDynamicEventListener(document.body, 'click', '.fetched-star', function (e) {
+    starClickHandler(e);
+});
+
+addDynamicEventListener(document.body, 'click', '.favorite-star', function (e) {
+    favClickHandler(e);
+});
