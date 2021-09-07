@@ -121,8 +121,11 @@ function recipeFetch(){
         return youtuberesponse.json();     
     })
     .then(function(youtuberesponse){
-        
+        // Sets inner html of parent to remove previous video list.
+        ytContainer.innerHTML = '<h2>Videos for your Recipe Idea!</h2>';
+        // slecting the arr that holds the 5 videos from the search
         var videoIdArr = youtuberesponse.items;
+        // For each index, select the videoId, create an yt embeded iframe, place the id into the iframe, and append each iframe.
         let i = 0;
         videoIdArr.forEach(function(elem, i){
             var ytId = videoIdArr[i].id.videoId;
