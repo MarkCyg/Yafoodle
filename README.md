@@ -1,6 +1,9 @@
 # Yafoodle
 
-This project is a search feature that utilizes HTML, CSS, JS, Edamam API, Youtube API, variables, local storage, fetch and function requests. The search bar gives you different options for cuisines, and gives you different different dietery restrictions to choose from. When the search button is clicked you are given five different recipes and five different youtube videos related to the serach.
+This project is an interactive Front End Project that utilizes HTML, CSS, JS, Edamam API, Youtube API, variables, local storage, fetch and function requests. 
+We were tasked with conceving and executing a design that solved a real world problem by integrating data recived gtom multiple server-side API requests. 
+
+The search bar gives you different options for cuisines, and gives you different different dietery restrictions to choose from. When the search button is clicked you are given five different recipes and five different youtube videos related to the serach.
 
 
 ## User Story
@@ -19,7 +22,37 @@ THEN I want to show five different videos of the searched items.
  - JS DOM Manipulation (fetch requests, functions, variables, for and return results)
  - Local Storage
  - Different CSS properties
- - 
+ - Server side APIs
 
+ ## Project Requirements
+
+- Use a CSS framework other than Bootstrap.
+
+- Be deployed to GitHub Pages.
+
+- Be interactive (i.e., accept and respond to user input).
+
+- Use at least two server-side APIs.
+
+- Does not use alerts, confirms, or prompts (use modals).
+
+- Use client-side storage to store persistent data.
+
+- Be responsive.
+
+- Have a polished UI.
+
+- Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
+
+- Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
+
+- Link the project to our Professional Portfolio
+
+
+
+![Screenshot] - need to get something here for the completed search
+![Screenshot] - something for an actual search to see the recipes and videos
 
  ### Link to Deployed Application
+
+ 
