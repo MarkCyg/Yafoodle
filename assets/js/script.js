@@ -114,7 +114,7 @@ function recipeFetch(){
             var starBtnHtml = "<span class='empty-star'><span class='iconify' data-icon='mdi:star-outline'></span></span><span class='add-star'><span class='iconify' data-icon='mdi:star-plus-outline'></span></span>";
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched', starBtnHtml);
         }
-        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + seanYtApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
+        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippetg&key=' + seanYtApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
     })
     .then(function(youtuberesponse){
         console.log(youtuberesponse);
