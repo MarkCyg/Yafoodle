@@ -50,7 +50,7 @@ form {
 /* IFRAME */
 
 iframe {
-  width: 500px;
+  width: 600px;
   height: 400px;
 }
 
@@ -120,4 +120,23 @@ div.fetched-star:hover span.add-star, div.favorite-star:hover span.remove-star {
   display: block;
 }
 
+@media (min-width: 320px) {
+  iframe {
+    width: initial;
+    height: initial;
+  }
+}
+
+@media (min-width: 1024px) {
+  iframe {
+    width: 400px;
+    height: 350px;
+  }
+}
+@media (min-width: 1440px) {
+  iframe {
+    width: 600px;
+    height: 400px;
+  }
+}
 
