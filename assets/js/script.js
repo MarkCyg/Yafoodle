@@ -114,7 +114,7 @@ function recipeFetch(){
             var starBtnHtml = "<span class='empty-star'><span class='iconify' data-icon='mdi:star-outline'></span></span><span class='add-star'><span class='iconify' data-icon='mdi:star-plus-outline'></span></span>";
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched', starBtnHtml);
         }
-        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippetg&key=' + seanYtApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
+        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + seanYtApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' ') + ' recipe' + '&type=video&videoEmbeddable=true')
     })
     .then(function(youtuberesponse){
         console.log(youtuberesponse);
@@ -122,7 +122,7 @@ function recipeFetch(){
     })
     .then(function(youtuberesponse){
         // Sets inner html of parent to remove previous video list.
-        ytContainer.innerHTML = '<h2>Videos for your Recipe Idea!</h2>';
+        ytContainer.innerHTML = '';
         // selecting the arr that holds the 5 videos from the search
         var videoIdArr = youtuberesponse.items;
         // For each index, select the videoId, create a yt embed iframe, place the id into the iframe, and append each iframe.
@@ -136,10 +136,11 @@ function recipeFetch(){
             ytIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
             ytContainer.appendChild(ytIframe);
             console.log(ytId);
-
         })
+
     })
 };
+
 
 //   ***JOHN'S STUFF***
 
@@ -245,7 +246,6 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
     }
 
     var favClickHandler = function(event) {
-        debugger;
         var recipeId = event.target.closest('.favorite-recipe').getAttribute('data-favorite-id');
         console.log('You have removed Recipe #' + recipeId + ' from the array.');
         var favArray = JSON.parse(localStorage.getItem('favArray'));
