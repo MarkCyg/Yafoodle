@@ -32,6 +32,11 @@ form {
     flex-wrap: wrap;
 }
 
+.input-fields {
+  background-color: white !important;
+  color: black;
+}
+
   .container {
     max-width: 100%;
   }
