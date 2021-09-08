@@ -246,7 +246,6 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
     }
 
     var favClickHandler = function(event) {
-        debugger;
         var recipeId = event.target.closest('.favorite-recipe').getAttribute('data-favorite-id');
         console.log('You have removed Recipe #' + recipeId + ' from the array.');
         var favArray = JSON.parse(localStorage.getItem('favArray'));
