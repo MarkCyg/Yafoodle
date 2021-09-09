@@ -180,25 +180,6 @@ margin-bottom: 0px;
   display: block;
 }
 
-@media (min-width: 320px) {
-  iframe {
-    width: initial;
-    height: initial;
-  }
-}
-
-@media (min-width: 1024px) {
-  iframe {
-    width: 400px;
-    height: 350px;
-  }
-}
-@media (min-width: 1440px) {
-  iframe {
-    width: 600px;
-    height: 400px;
-  }
-}
 
 /* IFRAME */
 
@@ -250,5 +231,9 @@ iframe {
 
   #searchRow {
     padding-right: 0px;
+  }
+  iframe {
+    width: initial;
+    height: initial;
   }
 }
