@@ -64,20 +64,9 @@ function recipeFetch(){
 
     })
     .then(function(response){
-        // ***PREVIOUS CODE***
-        // This code finds a random index out of the recipeListArr. I wanted to select 5 indexes out of the 20 that are given to us at random.  However, I didn't want to repeat the same index, so I found this method, after googling, that creates a new array with random numbers that aren't repeating(the result[]).  After we have our 5 random numbers in the array,I can change the inner HTML of recipeList to include the info out of a random Index from the JSON response. So recipeListArr[result[0]] means recipeListArr[random].
-        // let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15, 16, 17, 18, 19]
-        // let result = []
-        // for (let i = 0; i < 5; i++) {
-        //     const random = Math.floor(Math.random() * (19 - i))
-        //     result.push(arr[random]);
-        //     arr[random] = arr[19 - i];   
-        // }
-        // ***END***
-
         var recipeListArr = response.hits;
         console.log(recipeListArr);
-
+        
         // if less than 5 results, only iterate the length of the recipeListArr
         var displayNumber = 5
         if (recipeListArr.length < 5) {
@@ -104,6 +93,10 @@ function recipeFetch(){
         // Remove any previous content from #recipe-list
         var resultsEl = document.querySelector('#recipe-list');
         resultsEl.textContent = '';
+        // Create h2 section header
+        var resultsHeading = document.createElement('h2');
+            resultsHeading.textContent = 'Recipe List...';
+            resultsEl.appendChild(resultsHeading);
         // Generate listings on the page; choose recipes based on randomResults array
         for (var i = 0; i < displayNumber; i++) {
             var listingId = i;
@@ -114,7 +107,7 @@ function recipeFetch(){
             var starBtnHtml = "<span class='empty-star'><span class='iconify' data-icon='mdi:star-outline'></span></span><span class='add-star'><span class='iconify' data-icon='mdi:star-plus-outline'></span></span>";
             generateListing(listingId, image, name, site, link, resultsEl, 'fetched', starBtnHtml);
         }
-        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + seanYtApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' '))
+        return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + seanYtApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' ') + ' recipe' + '&type=video&videoEmbeddable=true')
     })
     .then(function(youtuberesponse){
         console.log(youtuberesponse);
@@ -122,7 +115,11 @@ function recipeFetch(){
     })
     .then(function(youtuberesponse){
         // Sets inner html of parent to remove previous video list.
-        ytContainer.innerHTML = '<h2>Videos for your Recipe Idea!</h2>';
+        ytContainer.innerHTML = '';
+        // Create h2 section header
+        var videoHeading = document.createElement('h2');
+            videoHeading.textContent = 'Video Inspiration...';
+            ytContainer.appendChild(videoHeading);
         // selecting the arr that holds the 5 videos from the search
         var videoIdArr = youtuberesponse.items;
         // For each index, select the videoId, create a yt embed iframe, place the id into the iframe, and append each iframe.
@@ -136,12 +133,10 @@ function recipeFetch(){
             ytIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
             ytContainer.appendChild(ytIframe);
             console.log(ytId);
-
         })
+
     })
 };
-
-//   ***JOHN'S STUFF***
 
 var loadFavorites = function(starredObj) {
     var favArray = localStorage.getItem('favArray');
@@ -177,6 +172,14 @@ var loadFavorites = function(starredObj) {
     // Clear previous favorites
     var favoritesEl = document.querySelector('#favorites-container');
     favoritesEl.textContent = '';
+    // Create h2 section header
+    if (favArray.length === 0) {
+        return;
+    } else {
+        var favHeading = document.createElement('h2');
+        favHeading.textContent = 'Your Favorites...';
+        favoritesEl.appendChild(favHeading);
+    };
     // Add back favorites based on updated array
     for (var i = 0; i < favArray.length; i++) {
         var listingId = i;
@@ -245,7 +248,6 @@ var generateListing = function(listingId, image, name, site, link, parentDiv, cl
     }
 
     var favClickHandler = function(event) {
-        debugger;
         var recipeId = event.target.closest('.favorite-recipe').getAttribute('data-favorite-id');
         console.log('You have removed Recipe #' + recipeId + ' from the array.');
         var favArray = JSON.parse(localStorage.getItem('favArray'));
