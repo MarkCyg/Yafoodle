@@ -118,7 +118,7 @@ function recipeFetch(){
         ytContainer.innerHTML = '';
         // Create h2 section header
         var videoHeading = document.createElement('h2');
-            videoHeading.textContent = 'Videos Inspiration...';
+            videoHeading.textContent = 'Video Inspiration...';
             ytContainer.appendChild(videoHeading);
         // selecting the arr that holds the 5 videos from the search
         var videoIdArr = youtuberesponse.items;
