@@ -64,7 +64,6 @@ function recipeFetch(){
 
     })
     .then(function(response){
-        
         var recipeListArr = response.hits;
         console.log(recipeListArr);
         
@@ -94,6 +93,10 @@ function recipeFetch(){
         // Remove any previous content from #recipe-list
         var resultsEl = document.querySelector('#recipe-list');
         resultsEl.textContent = '';
+        // Create h2 section header
+        var resultsHeading = document.createElement('h2');
+            resultsHeading.textContent = 'Recipe List...';
+            resultsEl.appendChild(resultsHeading);
         // Generate listings on the page; choose recipes based on randomResults array
         for (var i = 0; i < displayNumber; i++) {
             var listingId = i;
@@ -113,6 +116,10 @@ function recipeFetch(){
     .then(function(youtuberesponse){
         // Sets inner html of parent to remove previous video list.
         ytContainer.innerHTML = '';
+        // Create h2 section header
+        var videoHeading = document.createElement('h2');
+            videoHeading.textContent = 'Video Inspiration...';
+            ytContainer.appendChild(videoHeading);
         // selecting the arr that holds the 5 videos from the search
         var videoIdArr = youtuberesponse.items;
         // For each index, select the videoId, create a yt embed iframe, place the id into the iframe, and append each iframe.
@@ -130,9 +137,6 @@ function recipeFetch(){
 
     })
 };
-
-
-//   ***JOHN'S STUFF***
 
 var loadFavorites = function(starredObj) {
     var favArray = localStorage.getItem('favArray');
@@ -168,6 +172,14 @@ var loadFavorites = function(starredObj) {
     // Clear previous favorites
     var favoritesEl = document.querySelector('#favorites-container');
     favoritesEl.textContent = '';
+    // Create h2 section header
+    if (favArray.length === 0) {
+        return;
+    } else {
+        var favHeading = document.createElement('h2');
+        favHeading.textContent = 'Your Favorites...';
+        favoritesEl.appendChild(favHeading);
+    };
     // Add back favorites based on updated array
     for (var i = 0; i < favArray.length; i++) {
         var listingId = i;
