@@ -50,9 +50,19 @@ THEN I want to show five different videos of the searched items.
 
 
 
-![Screenshot] - need to get something here for the completed search
-![Screenshot] - something for an actual search to see the recipes and videos
+![Screenshot](./assets/images/Screenshot.PNG)
+
 
  ### Link to Deployed Application
+
+ https://markcyg.github.io/project1/
+
+ ### Credits
+
+Nick Giuliani - https://github.com/thereeling
+Mark Cygnarowicz - https://github.com/MarkCyg
+Sean Murphy - https://github.com/smurphy7326
+John Brodeur - https://github.com/JPDBrodeur
+
 
  

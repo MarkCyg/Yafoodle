@@ -10,7 +10,7 @@ var seanYtApiKey = 'AIzaSyAFrdBZ18oQzxQEt3n9K_era03MHQ88F18';
 // Grabbing youtube container
 
 var ytContainer = document.getElementById('youtube-container');
-// ytContainer.style.display = 'none';
+
 
 // DOM Selectors for Search Field
 var searchBtn = document.getElementById('searchBtn');
@@ -19,13 +19,33 @@ var resetBtn = document.getElementById('resetBtn');
 // DOM Selectors for Recipelist
 var recipeList = document.getElementById('recipe-list');
 
+// DOM Selectors for Modals
+var modal = document.getElementById('modalBox');
+var modalClose = document.getElementsByClassName('close')[0];
+var modalText = document.getElementById('modal-text');
+
+// Modal render function 
+function modalRender() {
+    modalClose.onclick = function() {
+        modal.style.display = "none";
+      }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+}
+
+
 // Event listener to make sure text field is filled
 searchBtn.addEventListener('click', function(event){
     event.preventDefault();
     var userTextInput = document.getElementById('nameField').value;
 
     if(userTextInput === ''){
-        alert('Please enter a food item!')
+        modal.style.display = 'block';
+        modalText.innerHTML = 'Please enter an ingredient/recipe in the search field!'
+        modalRender();
     }
     else{
         recipeFetch();
@@ -58,14 +78,23 @@ function recipeFetch(){
             return response.json();
         }
         else {
-        //  ***TEMP***
-            alert('Error: ' + response.statusText);
+            modal.style.display = 'block';
+            modalText.innerHTML = 'Error: ' + response.statusText;
+            modalRender();
         }
 
     })
     .then(function(response){
         var recipeListArr = response.hits;
         console.log(recipeListArr);
+
+        // If there are no results
+        if(recipeListArr === undefined || recipeListArr.length == 0){
+            modal.style.display = 'block';
+            modalText.innerHTML = 'Your search did not retrieve any results, please try again!';
+            modalRender();
+            return;
+        }
         
         // if less than 5 results, only iterate the length of the recipeListArr
         var displayNumber = 5
@@ -110,10 +139,23 @@ function recipeFetch(){
         return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + seanYtApiKey + '&q=' + userCuisineInput + ' ' + userTextInput + checkboxStr.replace(/&health=/g, ' ') + ' recipe' + '&type=video&videoEmbeddable=true')
     })
     .then(function(youtuberesponse){
-        console.log(youtuberesponse);
-        return youtuberesponse.json();     
+        if(youtuberesponse === undefined){
+            return;
+        }
+        if(youtuberesponse.ok){
+            return youtuberesponse.json();
+        }
+        else{
+            modal.style.display = 'block';
+            modalText.innerHTML = 'Error: ' + youtuberesponse.statusText;
+            modalRender();
+        }
+             
     })
     .then(function(youtuberesponse){
+        if(youtuberesponse === undefined){
+            return;
+        }
         // Sets inner html of parent to remove previous video list.
         ytContainer.innerHTML = '';
         // Create h2 section header
