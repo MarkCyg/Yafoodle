@@ -55,7 +55,7 @@ THEN I want to show five different videos of the searched items.
 
  ### Link to Deployed Application
 
- https://markcyg.github.io/project1/
+ https://markcyg.github.io/Yafoodle/
 
  ### Credits
 
